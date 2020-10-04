@@ -1,7 +1,7 @@
 #!/bin/bash
 #Akram
 #30/09/2020
-#Configuration de la VM node1
+#Configuration serveur
 
 echo "192.168.1.11 node1.tp1.b2" | tee /etc/hosts
 echo "192.168.1.12 node2.tp1.b2" | tee /etc/hosts
