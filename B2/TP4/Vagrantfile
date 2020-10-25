@@ -1,0 +1,40 @@
+Vagrant.configure("2")do|config|
+  config.vm.box="centos7-patron"
+
+  config.vbguest.auto_update = false
+  config.vm.box_check_update = false 
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.define "gitea" do |gitea|
+      gitea.vm.hostname = "node1.tp4.gitea"
+      gitea.vm.network "private_network", ip: "192.168.1.11", netmask:"255.255.255.0"
+      gitea.vm.provision :shell, path: "scripts/scriptgitea.sh"
+      gitea.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+  end
+  config.vm.define "mariadb" do |mariadb|
+      mariadb.vm.hostname = "node1.tp4.mariadb"
+      mariadb.vm.network "private_network", ip: "192.168.1.12", netmask:"255.255.255.0"
+      mariadb.vm.provision :shell, path: "scripts/scriptbdd.sh"
+      mariadb.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+  end
+  config.vm.define "nginx" do |nginx|
+      nginx.vm.hostname = "node1.tp4.nginx"
+      nginx.vm.network "private_network", ip: "192.168.1.13", netmask:"255.255.255.0"
+      nginx.vm.provision :shell, path: "scripts/scriptnginx.sh"
+      nginx.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+  end
+  config.vm.define "nfs" do |nfs|
+      nfs.vm.hostname = "node1.tp4.nfs"
+      nfs.vm.network "private_network", ip: "192.168.1.14", netmask:"255.255.255.0"
+      nfs.vm.provision :shell, path: "scripts/scriptnfs.sh"
+      nfs.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+  end
+end
