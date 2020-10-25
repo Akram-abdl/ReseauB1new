@@ -4,7 +4,7 @@
 
 On repackage une box CentOS7 en installant tout les packages nécessaires et en désactivant selinux.
 
-### Liste des h�tes
+### Liste des hôtes
 
 | Name                | IP           | Rôle           |
 | ----------------    | ------------ | -----------    |
